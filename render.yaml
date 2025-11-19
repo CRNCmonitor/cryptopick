@@ -1,0 +1,1 @@
+services:\n  - type: web\n    name: cryptopick\n    env: python\n    startCommand: python src/bot.py
