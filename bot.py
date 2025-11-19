@@ -1,1 +1,28 @@
-import asyncio`nfrom telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler`nfrom config import TELEGRAM_BOT_TOKEN`nfrom handlers.start_handler import start`nfrom handlers.market_handler import handle_market`nfrom handlers.news_handler import handle_news`nfrom handlers.sentiment_handler import handle_sentiment`nfrom handlers.alerts_handler import handle_alerts`nfrom schedulers.alert_scheduler import check_alerts`nfrom apscheduler.schedulers.asyncio import AsyncIOScheduler`nasync def main():`n    app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()`n    app.add_handler(CommandHandler("start", start))`n    app.add_handler(CallbackQueryHandler(handle_market, pattern="market"))`n    app.add_handler(CallbackQueryHandler(handle_news, pattern="news"))`n    app.add_handler(CallbackQueryHandler(handle_sentiment, pattern="sentiment"))`n    app.add_handler(CallbackQueryHandler(handle_alerts, pattern="alerts"))`n    scheduler = AsyncIOScheduler()`n    scheduler.add_job(lambda: check_alerts(app), "interval", seconds=60)`n    scheduler.start()`n    await app.run_polling()`nif __name__ == "__main__":`n    asyncio.run(main())
+import asyncio
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
+from config import TELEGRAM_BOT_TOKEN
+from handlers.start_handler import start
+from handlers.market_handler import handle_market
+from handlers.news_handler import handle_news
+from handlers.sentiment_handler import handle_sentiment
+from handlers.alerts_handler import handle_alerts
+from schedulers.alert_scheduler import check_alerts
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+
+async def main():
+    app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CallbackQueryHandler(handle_market, pattern="market"))
+    app.add_handler(CallbackQueryHandler(handle_news, pattern="news"))
+    app.add_handler(CallbackQueryHandler(handle_sentiment, pattern="sentiment"))
+    app.add_handler(CallbackQueryHandler(handle_alerts, pattern="alerts"))
+
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(check_alerts, "interval", minutes=1)
+    scheduler.start()
+
+    await app.run_polling()
+
+if __name__ == "__main__":
+    asyncio.run(main())
