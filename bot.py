@@ -1,3 +1,4 @@
+import asyncio
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler
 from config import TELEGRAM_BOT_TOKEN
 from handlers.start_handler import start
@@ -15,5 +16,4 @@ async def main():
     app.add_handler(CallbackQueryHandler(handle_alerts, pattern='alerts'))
     await app.run_polling()
 
-if __name__ == '__main__':
-    import asyncio; asyncio.run(main())
+if __name__ == '__main__': asyncio.run(main())
