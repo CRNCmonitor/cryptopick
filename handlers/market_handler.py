@@ -1,1 +1,1 @@
-from telegram import Update`nfrom telegram.ext import ContextTypes`nfrom services.coingecko import get_snapshot`nfrom utils.formatting import format_snapshot`nasync def handle_market(update: Update, context: ContextTypes.DEFAULT_TYPE):`n    q=update.callback_query; await q.answer()`n    d=get_snapshot()`n    await q.edit_message_text(format_snapshot(d))
+async def handle_market(update, context): await update.callback_query.edit_message_text('?? Market data nie je zatia¾ implementovaná.')

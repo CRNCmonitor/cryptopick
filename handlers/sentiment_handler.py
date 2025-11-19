@@ -1,1 +1,1 @@
-from telegram import Update`nfrom telegram.ext import ContextTypes`nfrom services.feargreed import get_sentiment`nasync def handle_sentiment(update: Update, context: ContextTypes.DEFAULT_TYPE):`n    q=update.callback_query; await q.answer()`n    v,s=get_sentiment()`n    await q.edit_message_text(f"Fear & Greed Index: {v}`nStav: {s}")
+async def handle_sentiment(update, context): await update.callback_query.edit_message_text('?? Sentiment nie je zatia¾ implementovaný.')

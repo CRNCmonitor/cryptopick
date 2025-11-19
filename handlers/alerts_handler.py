@@ -1,1 +1,1 @@
-from telegram import Update`nfrom telegram.ext import ContextTypes`nfrom utils.user_db import load_users, save_users`nasync def handle_alerts(update: Update, context: ContextTypes.DEFAULT_TYPE):`n    q=update.callback_query; await q.answer()`n    db=load_users(); uid=str(q.from_user.id)`n    db[uid]=not db.get(uid,False)`n    save_users(db)`n    await q.edit_message_text("Realtime alerty s√∫ teraz: "+("zapnut√©" if db[uid] else "vypnut√©"))
+async def handle_alerts(update, context): await update.callback_query.edit_message_text('? Alerts ON/OFF zatiaæ neimplementovanÈ.')

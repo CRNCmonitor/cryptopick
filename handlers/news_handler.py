@@ -1,1 +1,1 @@
-from telegram import Update`nfrom telegram.ext import ContextTypes`nfrom services.cryptopanic import get_news`nasync def handle_news(update: Update, context: ContextTypes.DEFAULT_TYPE):`n    q=update.callback_query; await q.answer()`n    items=get_news()`n    txt="Najd√¥le≈æitej≈°ie spr√°vy:`n`n"`n    for n in items:`n        txt+=f"‚Ä¢ {n[""title""]}`n{n[""link""]}`n`n"`n    await q.edit_message_text(txt)
+async def handle_news(update, context): await update.callback_query.edit_message_text('?? News nie s˙ zatiaæ implementovanÈ.')
