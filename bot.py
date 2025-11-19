@@ -6,8 +6,8 @@ from handlers.market_handler import handle_market
 from handlers.news_handler import handle_news
 from handlers.sentiment_handler import handle_sentiment
 from handlers.alerts_handler import handle_alerts
-from schedulers.alert_scheduler import check_alerts
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from schedulers.alert_scheduler import check_alerts
 
 async def main():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
