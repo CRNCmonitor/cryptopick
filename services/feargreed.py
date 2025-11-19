@@ -1,0 +1,1 @@
+import requests`nURL="https://alternative.me/crypto/fear-and-greed-index.json"`ndef get_sentiment():`n    d=requests.get(URL).json()`n    return d[""data""][0][""value""], d[""data""][0][""value_classification""]
