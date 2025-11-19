@@ -16,4 +16,5 @@ async def main():
     app.add_handler(CallbackQueryHandler(handle_alerts, pattern='alerts'))
     await app.run_polling()
 
-asyncio.run(main())
+if __name__ == '__main__':
+    asyncio.run(main())

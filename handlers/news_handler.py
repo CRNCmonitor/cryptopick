@@ -1,1 +1,7 @@
-async def handle_news(update, context): await update.callback_query.edit_message_text('?? News nie sú zatia¾ implementované.')
+from telegram import Update
+from telegram.ext import ContextTypes
+
+async def handle_news(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    q = update.callback_query
+    await q.answer()
+    await q.edit_message_text('News not implemented yet.')
